@@ -41,8 +41,8 @@ export function PremiumBackground() {
       radius: number;
 
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random() * canvas!.width;
+        this.y = Math.random() * canvas!.height;
         this.vx = (Math.random() - 0.5) * 0.8;
         this.vy = (Math.random() - 0.5) * 0.8;
         this.radius = Math.random() * 1.5 + 0.5;
@@ -53,8 +53,8 @@ export function PremiumBackground() {
         this.y += this.vy;
 
         // Bounce off edges
-        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
-        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+        if (this.x < 0 || this.x > canvas!.width) this.vx = -this.vx;
+        if (this.y < 0 || this.y > canvas!.height) this.vy = -this.vy;
       }
 
       draw() {
