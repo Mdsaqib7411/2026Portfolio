@@ -59,7 +59,7 @@ export function Navbar() {
 
         <div className="hidden md:block">
           <a
-            href="/portfolioresume26.pdf"
+            href="/Saqib26Resume.pdf"
             target="_blank"
             rel="noreferrer"
             className="px-6 py-2 text-sm font-semibold rounded-full bg-white text-black hover:bg-gray-200 transition-all hover:scale-105 inline-block shadow-[0_0_20px_rgba(255,255,255,0.2)]"
@@ -98,7 +98,7 @@ export function Navbar() {
                 </Link>
               ))}
               <a
-                href="/portfolioresume26.pdf"
+                href="/Saqib26Resume.pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="mt-2 p-3 text-center text-sm font-bold rounded-xl bg-gradient-to-r from-primary to-accent text-white shadow-[0_0_15px_rgba(168,85,247,0.4)]"
