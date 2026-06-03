@@ -16,9 +16,13 @@ import {
   Gauge, 
   CheckCircle,
   Database,
-  Sparkles
+  Sparkles,
+  Smartphone,
+  Globe,
+  Phone,
+  Mail
 } from "lucide-react";
-import { FaGithub } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa6";
 
 import { TrendPulseSimulator } from "@/components/TrendPulseSimulator";
 import { PremiumBackground } from "@/components/PremiumBackground";
@@ -112,7 +116,8 @@ export default function TrendPulseShowcase() {
           {/* ────────────────────────────────────────────────────────
               RIGHT COLUMN: SAAS PRODUCT METRICS & TECH DETAILS
               ──────────────────────────────────────────────────────── */}
-          <div className="lg:col-span-7 space-y-10">
+          <div className="lg:col-span-7 lg:mt-[68px] mt-0">
+            <div className="lg:max-h-[676px] lg:overflow-y-auto scrollbar-none bg-gradient-to-br from-white/[0.02] to-transparent border border-white/5 rounded-[32px] p-6 lg:p-8 space-y-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:border-white/10 transition-all duration-500">
             {/* TITLE HEADER */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
@@ -236,9 +241,121 @@ export default function TrendPulseShowcase() {
               </button>
             </motion.div>
 
+            </div>
           </div>
 
         </div>
+
+        {/* CUSTOM FOOTER SECTION FOR MD SAQIB HUSSAIN */}
+        <footer className="mt-24 pt-16 border-t border-white/5 relative z-30">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-12">
+            
+            {/* Card 1: Bio */}
+            <div className="glassmorphism p-6 rounded-3xl border border-white/5 bg-[#0B091A]/60 flex flex-col justify-between hover:border-white/10 transition-all duration-300">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-600 via-blue-500 to-cyan-500 flex items-center justify-center font-black text-white text-lg shadow-[0_0_20px_rgba(168,85,247,0.3)]">
+                  SH
+                </div>
+                <div>
+                  <h3 className="text-lg font-black tracking-tight text-white leading-none">Md Saqib Hussain</h3>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 mt-2 rounded-full text-[9px] font-black tracking-wider bg-green-500/10 text-green-400 border border-green-500/25">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                    <span>OPEN TO PROJECTS</span>
+                  </div>
+                </div>
+              </div>
+              <p className="text-xs text-gray-400 leading-relaxed font-light mt-2">
+                Building high-performance <span className="text-white font-semibold">React Native</span> apps with pixel-perfect design standards.
+              </p>
+            </div>
+
+            {/* Card 2: Expertise */}
+            <div className="glassmorphism p-6 rounded-3xl border border-white/5 bg-[#0B091A]/60 hover:border-white/10 transition-all duration-300">
+              <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-5">Expertise</p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+                    <Smartphone className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-semibold text-gray-300">React Native Expert</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                    <Code className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-semibold text-gray-300">React Web Apps</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400">
+                    <Globe className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-semibold text-gray-300">Premium UI/UX</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: Connect */}
+            <div className="glassmorphism p-6 rounded-3xl border border-white/5 bg-[#0B091A]/60 hover:border-white/10 transition-all duration-300">
+              <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-4">Connect</p>
+              
+              {/* Social links */}
+              <div className="flex items-center gap-2.5 mb-4">
+                <a 
+                  href="https://github.com/Mdsaqib7411" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all hover:scale-105"
+                >
+                  <FaGithub className="w-4 h-4" />
+                </a>
+                <a 
+                  href="https://linkedin.com/in/md-saqib-hussain-7411l7295" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-blue-400/50 hover:bg-blue-400/10 transition-all hover:scale-105"
+                >
+                  <FaLinkedin className="w-4 h-4" />
+                </a>
+                <a 
+                  href="#" 
+                  className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:border-blue-500/50 hover:bg-blue-500/10 transition-all hover:scale-105"
+                >
+                  <FaFacebook className="w-4 h-4" />
+                </a>
+                <a 
+                  href="#" 
+                  className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-pink-500 hover:border-pink-500/50 hover:bg-pink-500/10 transition-all hover:scale-105"
+                >
+                  <FaInstagram className="w-4 h-4" />
+                </a>
+              </div>
+
+              {/* Direct links */}
+              <a 
+                href="mailto:mdsaqibhussain123@gmail.com"
+                className="flex items-center gap-3 bg-white/[0.02] border border-white/5 rounded-xl px-3.5 py-2 hover:border-white/10 hover:bg-white/[0.04] transition-all mb-2 cursor-pointer group"
+              >
+                <Mail className="w-3.5 h-3.5 text-purple-400 group-hover:scale-110 transition-transform" />
+                <span className="text-[11px] text-gray-300 font-medium select-all">mdsaqibhussain123@gmail.com</span>
+              </a>
+              <a 
+                href="tel:+917295886601"
+                className="flex items-center gap-3 bg-white/[0.02] border border-white/5 rounded-xl px-3.5 py-2 hover:border-white/10 hover:bg-white/[0.04] transition-all cursor-pointer group"
+              >
+                <Phone className="w-3.5 h-3.5 text-cyan-400 group-hover:scale-110 transition-transform" />
+                <span className="text-[11px] text-gray-300 font-medium select-all">+91 7295886601</span>
+              </a>
+            </div>
+
+          </div>
+
+          {/* Bottom Copyright bar */}
+          <div className="border-t border-white/5 py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-gray-500 font-medium">
+            <p>© 2026 Md Saqib Hussain | 📍 Bhopal, India</p>
+            <p>Made with ❤️ By Md Saqib Hussain</p>
+          </div>
+        </footer>
+
       </div>
     </main>
   );
