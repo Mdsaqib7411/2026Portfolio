@@ -81,22 +81,17 @@ export function About() {
             className="lg:col-span-5 grid grid-cols-2 gap-4"
           >
             {/* Stat Cards */}
-            <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-3xl p-6 text-center hover:border-primary/50 transition-colors flex flex-col justify-center min-h-[160px] relative overflow-hidden group/stat">
+            <div className="col-span-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-3xl p-6 text-center hover:border-primary/50 transition-colors flex flex-col justify-center min-h-[160px] relative overflow-hidden group/stat">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity" />
-              <h4 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-2">2+</h4>
-              <p className="text-sm text-gray-400 font-medium">Years Experience</p>
-            </div>
-            <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-3xl p-6 text-center hover:border-accent/50 transition-colors flex flex-col justify-center min-h-[160px] lg:translate-y-8 relative overflow-hidden group/stat">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity" />
-              <h4 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-2">10+</h4>
+              <h4 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-2">6+</h4>
               <p className="text-sm text-gray-400 font-medium">Projects Built</p>
             </div>
-            <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-3xl p-6 text-center hover:border-primary/50 transition-colors flex flex-col justify-center min-h-[160px] relative overflow-hidden group/stat">
+            <div className="col-span-1 bg-black/40 backdrop-blur-md border border-white/10 rounded-3xl p-6 text-center hover:border-primary/50 transition-colors flex flex-col justify-center min-h-[160px] relative overflow-hidden group/stat">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity" />
               <h4 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-2">3+</h4>
               <p className="text-sm text-gray-400 font-medium">AI Integrations</p>
             </div>
-            <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-3xl p-6 text-center hover:border-accent/50 transition-colors flex flex-col justify-center min-h-[160px] lg:translate-y-8 relative overflow-hidden group/stat">
+            <div className="col-span-1 bg-black/40 backdrop-blur-md border border-white/10 rounded-3xl p-6 text-center hover:border-accent/50 transition-colors flex flex-col justify-center min-h-[160px] relative overflow-hidden group/stat">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity" />
               <h4 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-2">100%</h4>
               <p className="text-sm text-gray-400 font-medium">Commitment</p>

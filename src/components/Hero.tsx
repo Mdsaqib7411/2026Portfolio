@@ -70,9 +70,21 @@ export function Hero() {
           </div>
 
           <div className="flex items-center justify-center lg:justify-start gap-6 mt-14">
-            <SocialLink href="https://github.com/Mdsaqib7411" icon={<FaGithub size={22} />} />
-            <SocialLink href="https://linkedin.com/in/md-saqib-hussain-7411l7295" icon={<FaLinkedin size={22} />} />
-            <SocialLink href="mailto:mdsaqibhussain123@gmail.com" icon={<Mail size={22} />} />
+            <SocialLink 
+              href="https://github.com/Mdsaqib7411" 
+              icon={<FaGithub size={22} />} 
+              hoverClass="text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]" 
+            />
+            <SocialLink 
+              href="https://linkedin.com/in/md-saqib-hussain-7411l7295" 
+              icon={<FaLinkedin size={22} />} 
+              hoverClass="text-gray-400 hover:text-[#0077b5] hover:bg-[#0077b5]/10 hover:border-[#0077b5]/40 hover:shadow-[0_0_20px_rgba(0,119,181,0.3)]" 
+            />
+            <SocialLink 
+              href="mailto:mdsaqibhussain123@gmail.com" 
+              icon={<Mail size={22} />} 
+              hoverClass="text-gray-400 hover:text-[#ea4335] hover:bg-[#ea4335]/10 hover:border-[#ea4335]/40 hover:shadow-[0_0_20px_rgba(234,67,53,0.3)]" 
+            />
           </div>
         </motion.div>
 
@@ -149,13 +161,15 @@ export function Hero() {
   );
 }
 
-function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
+function SocialLink({ href, icon, hoverClass }: { href: string; icon: React.ReactNode; hoverClass?: string }) {
   return (
     <a 
       href={href} 
       target="_blank" 
       rel="noreferrer"
-      className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+      className={`w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-300 hover:scale-110 ${
+        hoverClass || "text-gray-400 hover:text-white hover:bg-primary/20 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+      }`}
     >
       {icon}
     </a>

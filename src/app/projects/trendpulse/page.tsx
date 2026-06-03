@@ -94,17 +94,15 @@ export default function TrendPulseShowcase() {
               <span>GUEST DEMO ACTIVE: Simulated read-only environments.</span>
             </motion.div>
 
-            {/* Smartphone floating frame wrapper */}
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            {/* Smartphone stable frame wrapper */}
+            <div
               className="relative rounded-[50px] p-2 bg-[#050816]/40 border border-white/5 shadow-[0_0_80px_rgba(106,37,244,0.15)] group"
             >
               {/* Backlight glow behind device */}
               <div className="absolute inset-0 rounded-[50px] bg-gradient-to-tr from-purple-500/10 via-cyan-500/10 to-transparent blur-xl opacity-80 pointer-events-none group-hover:opacity-100 transition-opacity" />
               
               <TrendPulseSimulator />
-            </motion.div>
+            </div>
 
             <p className="text-gray-500 text-xs mt-6 text-center italic select-none">
               Scroll and tap inside the phone mockup to experience the actual app!

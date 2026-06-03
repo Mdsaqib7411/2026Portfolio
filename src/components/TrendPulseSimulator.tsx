@@ -35,7 +35,10 @@ import {
   AlertCircle,
   Radio,
   FileText,
-  BellOff
+  BellOff,
+  Eye,
+  EyeOff,
+  Mail
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -353,6 +356,16 @@ export function TrendPulseSimulator() {
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [newNameInput, setNewNameInput] = useState("");
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginEmail, setLoginEmail] = useState("goko.demo@trendpulse.ai");
+  const [loginPassword, setLoginPassword] = useState("password123");
+  const [showPassword, setShowPassword] = useState(false);
+  const [authLoading, setAuthLoading] = useState(false);
+
+  const [registerName, setRegisterName] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
 
   const unreadCount = notifications.filter(n => !n.read).length;
 
@@ -2061,17 +2074,269 @@ export function TrendPulseSimulator() {
     );
   };
 
+  // ────────────────────────────────────────────────────────
+  // SCREEN 12: LOGIN SCREEN (NEW)
+  // ────────────────────────────────────────────────────────
+  const renderLoginScreen = () => {
+    const handleLogin = () => {
+      setAuthLoading(true);
+      setTimeout(() => {
+        setAuthLoading(false);
+        if (registerEmail && loginEmail.trim().toLowerCase() === registerEmail.trim().toLowerCase() && loginPassword === registerPassword) {
+          setUser({
+            displayName: registerName || "Son Goko",
+            email: registerEmail,
+            emailVerified: false,
+            photoURL: "",
+            bio: "Exploring social media trends with Gemini AI."
+          });
+        } else if (loginEmail.trim().toLowerCase() === "goko.demo@trendpulse.ai" && loginPassword === "password123") {
+          setUser({
+            displayName: "Son Goko",
+            email: "goko.demo@trendpulse.ai",
+            emailVerified: false,
+            photoURL: "",
+            bio: "Exploring social media trends with Gemini AI."
+          });
+        } else {
+          alert("Invalid credentials. Try using the pre-filled demo account.");
+          return;
+        }
+        setIsLoggedIn(true);
+        setCurrentScreen('Home');
+        setActiveTab('Home');
+      }, 1200);
+    };
+
+    return (
+      <div className="flex flex-col h-full bg-[#05050A] select-none p-5 items-center justify-center relative overflow-y-auto scrollbar-none">
+        <div className="absolute top-[20%] left-[-20%] w-[200px] h-[200px] rounded-full bg-purple-600/10 blur-[80px] pointer-events-none" />
+        <div className="absolute bottom-[20%] right-[-20%] w-[200px] h-[200px] rounded-full bg-cyan-600/10 blur-[80px] pointer-events-none" />
+
+        <p className="text-purple-400 text-[10px] font-black tracking-[4px] uppercase mb-1 shrink-0">Analytics App</p>
+        <h2 className="text-white text-2xl font-black mb-6 shrink-0 tracking-tight">TrendPulse</h2>
+
+        <div className="w-full max-w-[275px] bg-[#11101A]/85 border border-[#6A25F4]/20 rounded-2xl p-5 shadow-2xl shrink-0 flex flex-col">
+          <p className="text-white text-base font-bold mb-5 text-center">Welcome Back</p>
+
+          <p className="text-gray-500 text-[9px] font-extrabold uppercase tracking-wider mb-1.5 ml-1">Email Address</p>
+          <div className="flex items-center bg-[#161022]/80 border border-white/[0.04] rounded-xl px-3 py-2.5 mb-4 shrink-0">
+            <Mail size={15} className="text-gray-500 mr-2.5 shrink-0" />
+            <input 
+              type="text" 
+              placeholder="Enter Email"
+              value={loginEmail}
+              onChange={(e) => setLoginEmail(e.target.value)}
+              className="flex-1 bg-transparent text-white text-xs outline-none placeholder:text-gray-600"
+            />
+          </div>
+
+          <p className="text-gray-500 text-[9px] font-extrabold uppercase tracking-wider mb-1.5 ml-1">Password</p>
+          <div className="flex items-center bg-[#161022]/80 border border-white/[0.04] rounded-xl px-3 py-2.5 mb-2.5 shrink-0">
+            <Lock size={15} className="text-gray-500 mr-2.5 shrink-0" />
+            <input 
+              type={showPassword ? "text" : "password"} 
+              placeholder="Enter Password"
+              value={loginPassword}
+              onChange={(e) => setLoginPassword(e.target.value)}
+              className="flex-1 bg-transparent text-white text-xs outline-none placeholder:text-gray-600"
+            />
+            <button 
+              onClick={() => setShowPassword(!showPassword)} 
+              className="text-gray-500 hover:text-white transition-colors"
+            >
+              {showPassword ? <Eye size={15} /> : <EyeOff size={15} />}
+            </button>
+          </div>
+
+          <button 
+            onClick={() => alert("Simulated: Password reset instructions sent to " + loginEmail)}
+            className="text-[#6A25F4] text-[10px] font-semibold text-right mb-5 self-end hover:underline"
+          >
+            Forgot Password?
+          </button>
+
+          <button 
+            onClick={handleLogin}
+            disabled={authLoading}
+            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-500 text-white font-black text-xs hover:opacity-95 active:scale-98 transition-all shadow-lg flex items-center justify-center min-h-[42px]"
+          >
+            {authLoading ? (
+              <span className="w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
+            ) : (
+              "Login"
+            )}
+          </button>
+        </div>
+
+        <p className="text-gray-500 text-[8px] font-bold tracking-wider text-center my-4 uppercase shrink-0">Or Continue With</p>
+
+        <button 
+          onClick={() => {
+            setAuthLoading(true);
+            setTimeout(() => {
+              setAuthLoading(false);
+              setUser({
+                displayName: "Son Goko",
+                email: "goko.demo@trendpulse.ai",
+                emailVerified: true,
+                photoURL: "",
+                bio: "Exploring social media trends with Gemini AI."
+              });
+              setIsLoggedIn(true);
+              setCurrentScreen('Home');
+              setActiveTab('Home');
+            }, 1000);
+          }}
+          disabled={authLoading}
+          className="w-full max-w-[275px] py-3 rounded-xl border border-purple-500/30 text-white font-bold text-xs hover:bg-[#6A25F4]/10 transition-colors flex items-center justify-center gap-2 mb-6 shrink-0"
+        >
+          <svg className="w-4 h-4" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+            <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+            <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+            <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+          </svg>
+          <span>Google</span>
+        </button>
+
+        <p className="text-gray-500 text-[10px] shrink-0">
+          Don't have an account?{" "}
+          <button 
+            onClick={() => setCurrentScreen('Register')} 
+            className="text-purple-400 font-bold hover:underline"
+          >
+            Create account
+          </button>
+        </p>
+
+        <p className="text-gray-600 text-[8px] text-center mt-3 max-w-[200px] leading-relaxed italic shrink-0 select-none">
+          * Demo credentials are pre-filled. You can also sign up a custom user or continue with Google.
+        </p>
+      </div>
+    );
+  };
+
+  // ────────────────────────────────────────────────────────
+  // SCREEN 13: REGISTER SCREEN (NEW)
+  // ────────────────────────────────────────────────────────
+  const renderRegisterScreen = () => {
+    const handleRegister = () => {
+      if (!registerName.trim() || !registerEmail.trim() || !registerPassword.trim()) {
+        alert("Please fill in all fields.");
+        return;
+      }
+      setAuthLoading(true);
+      setTimeout(() => {
+        setAuthLoading(false);
+        setUser({
+          displayName: registerName.trim(),
+          email: registerEmail.trim(),
+          emailVerified: false,
+          photoURL: "",
+          bio: "Exploring social media trends with Gemini AI."
+        });
+        setIsLoggedIn(true);
+        setCurrentScreen('Home');
+        setActiveTab('Home');
+      }, 1200);
+    };
+
+    return (
+      <div className="flex flex-col h-full bg-[#05050A] select-none p-5 items-center justify-center relative overflow-y-auto scrollbar-none">
+        <div className="absolute top-[20%] left-[-20%] w-[200px] h-[200px] rounded-full bg-purple-600/10 blur-[80px] pointer-events-none" />
+        <div className="absolute bottom-[20%] right-[-20%] w-[200px] h-[200px] rounded-full bg-cyan-600/10 blur-[80px] pointer-events-none" />
+
+        <p className="text-purple-400 text-[10px] font-black tracking-[4px] uppercase mb-1 shrink-0">Analytics App</p>
+        <h2 className="text-white text-2xl font-black mb-6 shrink-0 tracking-tight">TrendPulse</h2>
+
+        <div className="w-full max-w-[275px] bg-[#11101A]/85 border border-[#6A25F4]/20 rounded-2xl p-5 shadow-2xl shrink-0 flex flex-col">
+          <p className="text-white text-base font-bold mb-4 text-center">Create Account</p>
+
+          <p className="text-gray-500 text-[9px] font-extrabold uppercase tracking-wider mb-1.5 ml-1">Full Name</p>
+          <div className="flex items-center bg-[#161022]/80 border border-white/[0.04] rounded-xl px-3 py-2 mb-3 shrink-0">
+            <User size={15} className="text-gray-500 mr-2.5 shrink-0" />
+            <input 
+              type="text" 
+              placeholder="Enter Name"
+              value={registerName}
+              onChange={(e) => setRegisterName(e.target.value)}
+              className="flex-1 bg-transparent text-white text-xs outline-none placeholder:text-gray-600"
+            />
+          </div>
+
+          <p className="text-gray-500 text-[9px] font-extrabold uppercase tracking-wider mb-1.5 ml-1">Email Address</p>
+          <div className="flex items-center bg-[#161022]/80 border border-white/[0.04] rounded-xl px-3 py-2 mb-3 shrink-0">
+            <Mail size={15} className="text-gray-500 mr-2.5 shrink-0" />
+            <input 
+              type="text" 
+              placeholder="Enter Email"
+              value={registerEmail}
+              onChange={(e) => setRegisterEmail(e.target.value)}
+              className="flex-1 bg-transparent text-white text-xs outline-none placeholder:text-gray-600"
+            />
+          </div>
+
+          <p className="text-gray-500 text-[9px] font-extrabold uppercase tracking-wider mb-1.5 ml-1">Password</p>
+          <div className="flex items-center bg-[#161022]/80 border border-white/[0.04] rounded-xl px-3 py-2 mb-5 shrink-0">
+            <Lock size={15} className="text-gray-500 mr-2.5 shrink-0" />
+            <input 
+              type={showPassword ? "text" : "password"} 
+              placeholder="Enter Password"
+              value={registerPassword}
+              onChange={(e) => setRegisterPassword(e.target.value)}
+              className="flex-1 bg-transparent text-white text-xs outline-none placeholder:text-gray-600"
+            />
+            <button 
+              onClick={() => setShowPassword(!showPassword)} 
+              className="text-gray-500 hover:text-white transition-colors"
+            >
+              {showPassword ? <Eye size={15} /> : <EyeOff size={15} />}
+            </button>
+          </div>
+
+          <button 
+            onClick={handleRegister}
+            disabled={authLoading}
+            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-500 text-white font-black text-xs hover:opacity-95 active:scale-98 transition-all shadow-lg flex items-center justify-center min-h-[42px]"
+          >
+            {authLoading ? (
+              <span className="w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
+            ) : (
+              "Sign Up"
+            )}
+          </button>
+        </div>
+
+        <p className="text-gray-500 text-[10px] mt-6 shrink-0">
+          Already have an account?{" "}
+          <button 
+            onClick={() => setCurrentScreen('Login')} 
+            className="text-purple-400 font-bold hover:underline"
+          >
+            Sign In
+          </button>
+        </p>
+      </div>
+    );
+  };
+
   // Smartphone frame rendering wrapper
   return (
     <div className="relative mx-auto flex items-center justify-center p-2 select-none">
       
-      {/* Smartphone physical shell - Optimized size from 285x585 to 320x660 */}
-      <div className="relative w-[320px] h-[660px] rounded-[48px] border-[10px] border-[#1e1f29] bg-[#05050A] shadow-[0_25px_65px_-15px_rgba(0,0,0,0.95)] overflow-hidden flex flex-col ring-1 ring-white/10 select-none">
+      {/* iPhone 13 physical shell mockup */}
+      <div className="relative w-[320px] h-[660px] rounded-[44px] border-[9px] border-[#22232b] bg-[#05050A] shadow-[0_25px_65px_-15px_rgba(0,0,0,0.95)] overflow-hidden flex flex-col ring-1 ring-white/10 select-none">
         
-        {/* Dynamic Island Notch - Resized for 320px shell */}
-        <div className="absolute top-[8px] left-1/2 -translate-x-1/2 w-[105px] h-[26px] rounded-full bg-black z-50 flex items-center justify-center border border-white/5">
-          <div className="w-2.5 h-2.5 rounded-full bg-blue-950 shrink-0 mr-1.5 border border-white/5" />
-          <div className="w-1.5 h-1.5 rounded-full bg-slate-900 shrink-0" />
+        {/* iPhone 13 Notch */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[110px] h-[20px] bg-black z-50 rounded-b-[14px] flex items-center justify-between px-3 border-x border-b border-white/5 pointer-events-none">
+          {/* Speaker slit at the very top edge */}
+          <div className="absolute top-[1.5px] left-1/2 -translate-x-1/2 w-[34px] h-[1.5px] rounded-full bg-zinc-800" />
+          {/* Camera lens & sensors */}
+          <div className="w-[6px] h-[6px] rounded-full bg-zinc-900 ml-auto mr-1 flex items-center justify-center border border-zinc-800">
+            <div className="w-[2.5px] h-[2.5px] rounded-full bg-[#0d2238]" />
+          </div>
+          <div className="w-[4px] h-[4px] rounded-full bg-zinc-950 mr-1" />
         </div>
 
         {/* Flashing green indicator for Demo mode */}
@@ -2097,7 +2362,7 @@ export function TrendPulseSimulator() {
         <div className="flex-1 min-h-0 relative z-30">
           <AnimatePresence mode="wait">
             <motion.div
-              key={currentScreen === 'MainTabs' ? activeTab : currentScreen}
+              key={!isLoggedIn ? (currentScreen === 'Register' ? 'Register' : 'Login') : (currentScreen === 'MainTabs' ? activeTab : currentScreen)}
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
@@ -2105,6 +2370,12 @@ export function TrendPulseSimulator() {
               className="absolute inset-0 w-full h-full"
             >
               {(() => {
+                if (!isLoggedIn) {
+                  if (currentScreen === 'Register') {
+                    return renderRegisterScreen();
+                  }
+                  return renderLoginScreen();
+                }
                 if (currentScreen === 'Home' || currentScreen === 'Trending' || currentScreen === 'Search' || currentScreen === 'Saved') {
                   return renderTabContent();
                 }
@@ -2272,8 +2543,13 @@ export function TrendPulseSimulator() {
                           ]);
                           setIsLoggingOut(false);
                           setLogoutModalVisible(false);
-                          setCurrentScreen('Home');
-                          setActiveTab('Home');
+                          setIsLoggedIn(false);
+                          setLoginEmail("goko.demo@trendpulse.ai");
+                          setLoginPassword("password123");
+                          setRegisterName("");
+                          setRegisterEmail("");
+                          setRegisterPassword("");
+                          setCurrentScreen('Login');
                         }, 1500);
                       }}
                       className="flex-1 h-9 rounded-xl bg-gradient-to-r from-red-600 to-red-700 text-white text-xs font-black hover:opacity-95 active:scale-95 transition-all"
@@ -2288,7 +2564,7 @@ export function TrendPulseSimulator() {
         </AnimatePresence>
 
         {/* Bottom Navigation Tab Bar (Only visible on home-level views) */}
-        {['Home', 'Trending', 'Search', 'Saved'].includes(currentScreen) && (
+        {isLoggedIn && ['Home', 'Trending', 'Search', 'Saved'].includes(currentScreen) && (
           <div className="absolute bottom-0 left-0 right-0 h-16 bg-[#0A0510]/95 backdrop-blur-xl border-t border-white/5 flex justify-around items-center px-4 pb-2 z-40">
             <button 
               onClick={() => {
@@ -2349,10 +2625,10 @@ export function TrendPulseSimulator() {
       </div>
 
       {/* Side buttons decor */}
-      <div className="absolute left-[-2px] top-[110px] w-[2px] h-[24px] bg-[#22232a] rounded-l" />
-      <div className="absolute left-[-2px] top-[148px] w-[2px] h-[38px] bg-[#22232a] rounded-l" />
-      <div className="absolute left-[-2px] top-[196px] w-[2px] h-[38px] bg-[#22232a] rounded-l" />
-      <div className="absolute right-[-2px] top-[152px] w-[2px] h-[48px] bg-[#22232a] rounded-r" />
+      <div className="absolute left-[-2px] top-[110px] w-[2px] h-[24px] bg-[#22232b] rounded-l" />
+      <div className="absolute left-[-2px] top-[148px] w-[2px] h-[38px] bg-[#22232b] rounded-l" />
+      <div className="absolute left-[-2px] top-[196px] w-[2px] h-[38px] bg-[#22232b] rounded-l" />
+      <div className="absolute right-[-2px] top-[152px] w-[2px] h-[48px] bg-[#22232b] rounded-r" />
     </div>
   );
 }
