@@ -15,7 +15,7 @@ const projects = [
       "Viral trend prediction", "Smart analytics dashboard"
     ],
     github: "#",
-    live: "#",
+    live: "/projects/trendpulse",
     featured: true,
   },
   {
